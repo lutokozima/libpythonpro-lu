@@ -4,3 +4,8 @@ Módulo para exemplificar construção de projetos Python no curso Pytools
 Nesse curso é ensinado como contribuir com um projeto de código aberto
 
 Link do curso [PythonPro](https://www.python.pro.br/)
+
+Tópicos a serem abordados 
+1. Git
+2. Virtualenv
+3. Pip
