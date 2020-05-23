@@ -5,6 +5,8 @@ Nesse curso é ensinado como contribuir com um projeto de código aberto
 
 Link do curso [PythonPro](https://www.python.pro.br/)
 
+[![Build Status](https://travis-ci.com/lutokozima/libpythonpro-lu.svg?branch=master)](https://travis-ci.com/lutokozima/libpythonpro-lu)
+
 Suportada versão 3 de Python
 
 Para instalar:
