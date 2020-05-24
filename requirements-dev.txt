@@ -2,4 +2,12 @@ flake8==3.8.2
 mccabe==0.6.1
 pycodestyle==2.6.0
 pyflakes==2.2.0
+
+#Deps do Pytest
+py==1.8.1
+more-itertools==8.3.0
+six==1.15.0
+attrs==19.3.0
+pluggy==0.13.1
+pytest==5.4.2
 -r requirements.txt
