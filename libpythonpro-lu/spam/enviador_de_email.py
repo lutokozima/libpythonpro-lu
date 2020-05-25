@@ -4,5 +4,6 @@ class Enviador:
             raise EmailInvalido(f'Email de remetente invalido: {remetente} ')
         return remetente
 
+
 class EmailInvalido(Exception):
     pass

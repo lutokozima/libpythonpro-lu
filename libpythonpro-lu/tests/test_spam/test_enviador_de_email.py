@@ -2,6 +2,7 @@ import pytest
 from spam.enviador_de_email import Enviador
 from spam.enviador_de_email import EmailInvalido
 
+
 def test_criar_enviador_de_email():
     enviador = Enviador()
     assert enviador is not None
@@ -21,6 +22,7 @@ def test_remetente(destinatario):
     )
     assert destinatario in resultado
 
+
 @pytest.mark.parametrize(
     'remetente',
     ['', 'lutokozima']
@@ -34,4 +36,3 @@ def test_remetente_invalido(remetente):
             'Cursos Python Pro',
             'Turma 10 aberta'
         )
-
