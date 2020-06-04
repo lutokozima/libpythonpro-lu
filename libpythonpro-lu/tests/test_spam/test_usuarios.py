@@ -1,54 +1,33 @@
-class Sessao:
-    contador = 0
-    usuarios = []
-
-    def salvar(self, usuario):
-        Sessao.contador += 1
-        usuario.id = Sessao.contador
-        self.usuarios.append(usuario)
-
-    def listar(self):
-        return self.usuarios
-
-    def roll_back(self):
-        self.usuarios.clear()
-
-    def fechar(self):
-        pass
+import pytest
+from spam.modelos import Usuario
+from spam.db import Conexao
 
 
-class Conexao:
-    def gerar_sessao(self):
-        return Sessao()
-
-    def fechar(self):
-        pass
-
-
-class Usuario:
-    def __init__(self, nome):
-        self.nome = nome
-        self.id = None
+@pytest.fixture
+def conexao():
+    #Setup
+    conexao_obj = Conexao()
+    yield conexao_obj
+    #Tear Down
+    conexao_obj.fechar()
 
 
-def test_salvar_usuario():
-    conexao = Conexao()
-    sessao = conexao.gerar_sessao()
+@pytest.fixture
+def sessao(conexao):
+    sessao_obj = conexao.gerar_sessao()
+    yield sessao_obj
+    sessao_obj.roll_back()
+    sessao_obj.fechar()
+
+
+def test_salvar_usuario(sessao):
     usuario = Usuario(nome='Lutokozima')
     sessao.salvar(usuario)
     assert isinstance(usuario.id, int)
-    sessao.roll_back()
-    sessao.fechar()
-    conexao.fechar()
 
 
-def test_listar_usuario():
-    conexao = Conexao()
-    sessao = conexao.gerar_sessao()
+def test_listar_usuario(sessao):
     usuarios = [Usuario(nome='Lutokozima'), Usuario(nome='Renzo')]
     for usuario in usuarios:
         sessao.salvar(usuario)
     assert usuarios == sessao.listar()
-    sessao.roll_back()
-    sessao.fechar()
-    conexao.fechar()
